@@ -1,0 +1,16 @@
+h1 {
+    letter-spacing: -1.5px;
+    font-weight: 300;
+}
+
+header {
+    margin-bottom: 5px;
+}
+
+#header-navbar {
+    margin-bottom: 5px;
+}
+
+#flashes {
+    padding: 0 10px;
+}

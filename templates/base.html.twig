@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="/css/bootstrap.min.css">
+            <link rel="stylesheet" href="/css/main.css">
+        {% endblock %}
+    </head>
+    <body>
+        <header>
+            {% include('navbar.html.twig') %}
+            <div id="flashes">
+                {% for label, messages in app.flashes %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{ label }} alert-dismissible fade show">
+                            {{ message }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </header>
+
+        <div id="page-content">
+            {% block body %}{% endblock %}
+        </div>
+
+        {% block javascripts %}
+            <script src="/js/jquery-3.4.1.min.js"></script>
+            <script src="/js/bootstrap.min.js"></script>
+            <script>
+                $('.alert-dismissible').alert();
+            </script>
+        {% endblock %}
+    </body>
+</html>

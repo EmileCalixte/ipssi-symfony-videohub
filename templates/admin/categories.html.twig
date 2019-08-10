@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin panel - Categories{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div id="new-category-form" class="row" style="display: none;">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                <a href="#" id="hide-new-category-form-link">Hide</a>
+                {{ form_start(form) }}
+
+                <div class="form-group">
+                    {{ form_label(form.name) }}
+                    {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-error">
+                        {{ form_errors(form.name) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.description) }}
+                    {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-error">
+                        {{ form_errors(form.description) }}
+                    </div>
+                </div>
+                {{ form_row(form.create, {'attr': {'class': 'btn btn-primary btn-success'}}) }}
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <button id="display-new-category-form-button" class="btn btn-primary btn-success">New category</button>
+        <div class="row">
+            <div class="col-12">
+                <h1>Categories</h1>
+                <ul class="categories-list">
+                    {% for category in categories %}
+                        <li><a href="{{ path('admin_categories_id', {id: category.id}) }}">{{ category.name }}</a> - {{ category.videos|length }} videos - <a href="{{ path('admin_categories_id_delete', {id: category.id}) }}">Delete</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const displayFormButton = document.getElementById('display-new-category-form-button');
+        const form = document.getElementById('new-category-form');
+        const hideFormLink = document.getElementById('hide-new-category-form-link');
+
+        displayFormButton.addEventListener('click', function() {
+            form.style.display = 'block';
+            displayFormButton.style.display = 'none';
+        });
+
+        hideFormLink.addEventListener('click', function() {
+            form.style.display = 'none';
+            displayFormButton.style.display = 'inline-block';
+        })
+
+    </script>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Videohub - Register{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Register</h1>
+                <p>Fill out this form to create your account. You already have an account ? <a href="{{ path('login') }}">Login</a> now !</p>
+            </div>
+            <div class="col-xl-6 col-lg-8 col-md-10 col-sm-12">
+                {{ form_start(form) }}
+
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-error">
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.password.first) }}
+                    {{ form_widget(form.password.first, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-error">
+                        {{ form_errors(form.password.first) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.password.second) }}
+                    {{ form_widget(form.password.second, {'attr': {'class': 'form-control'}}) }}
+                    <div class="form-error">
+                        {{ form_errors(form.password.second) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.birthday) }}
+                    <div class="form-row">
+                        <div class="col">{{ form_widget(form.birthday.date.month, {'attr': {'class': 'form-control'}}) }}</div>
+                        <div class="col">{{ form_widget(form.birthday.date.day, {'attr': {'class': 'form-control'}}) }}</div>
+                        <div class="col">{{ form_widget(form.birthday.date.year, {'attr': {'class': 'form-control'}}) }}</div>
+                        <div class="col">{{ form_widget(form.birthday.time.hour, {'attr': {'class': 'form-control'}}) }}</div>
+                        <span style="transform: translateY(7px)">:</span>
+                        <div class="col">{{ form_widget(form.birthday.time.minute, {'attr': {'class': 'form-control'}}) }}</div>
+                    </div>
+                    <div class="form-error">
+                        {{ form_errors(form.birthday) }}
+                    </div>
+                </div>
+                {{ form_row(form.register, {'attr': {'class': 'btn btn-primary btn-success'}}) }}
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
