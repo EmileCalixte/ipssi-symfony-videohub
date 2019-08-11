@@ -5,7 +5,25 @@
 {% block body %}
     <div class="container">
         <div class="row">
-            <h1>Welcome to VideoHub</h1>
+            <div class="col-12">
+                <h1>Welcome to VideoHub</h1>
+
+
+                {% for category in categories %}
+                    <h2>{{ category.name }}</h2>
+                    <ul>
+                        {% for video in category.videos %}
+                            <li><a href="{{ path("video_id", {id:video.id}) }}">{{ video.title }}</a>
+                                -
+                                <a href="{{ path("user_id", {id:video.user.id}) }}">{{ video.user.email }}</a></li>
+                        {% else %}
+                            <p>No video</p>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No category</p>
+                {% endfor %}
+            </div>
         </div>
     </div>
 {% endblock %}

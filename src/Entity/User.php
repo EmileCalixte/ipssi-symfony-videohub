@@ -165,7 +165,7 @@ class User implements UserInterface
     {
         if (!$this->videos->contains($video)) {
             $this->videos[] = $video;
-            $video->setUsers($this);
+            $video->setUser($this);
         }
 
         return $this;
@@ -177,7 +177,7 @@ class User implements UserInterface
             $this->videos->removeElement($video);
             // set the owning side to null (unless already changed)
             if ($video->getUsers() === $this) {
-                $video->setUsers(null);
+                $video->setUser(null);
             }
         }
 

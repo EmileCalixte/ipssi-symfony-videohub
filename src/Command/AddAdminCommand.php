@@ -56,43 +56,45 @@ class AddAdminCommand extends Command
 
         // Si aucun utilisateur ne correspond à cette adresse email, on le crée
         if(is_null($user)) {
-            $createUserQuestion = new ConfirmationQuestion('This user does not exist yet. Do you want to create it ? [y/n]', false);
+//            $createUserQuestion = new ConfirmationQuestion('This user does not exist yet. Do you want to create it ? [y/n]', false);
+//
+//            if(!$helper->ask($input, $output, $createUserQuestion)) {
+//                return;
+//            }
+//
+//            // Récupération de l'adresse email
+//            $passwordQuestion = new Question('Create a password for this new admin user (be sur to not misstype): ');
+//            do {
+//                $userPassword = $helper->ask($input, $output, $passwordQuestion);
+//                $userPasswordIsValid = true;
+//                if(is_null($userPassword)) {
+//                    $userPasswordIsValid = false;
+//                    $io->writeln('You must specify a password!');
+//                }
+//            } while(!$userPasswordIsValid);
+//
+//            // Récupération de la date de naissance
+//            $birthdayQuestion = new Question('And now, tell me what is the birthday of this admin (format: YYYY-MM-DD hh:ii:ss): ');
+//            do {
+//                $userBirthday = $helper->ask($input, $output, $birthdayQuestion);
+//                $userBirthdayIsValid = true;
+//                if(is_null($userBirthday)) {
+//                    $userBirthdayIsValid = false;
+//                    $io->writeln('You must specify a birthday!');
+//                }
+//                $birthday = \DateTime::createFromFormat('Y-m-d H:i:s', $userBirthday);
+//                if(!($birthday instanceof \DateTime)) {
+//                    $userBirthdayIsValid = false;
+//                    $io->writeln('The format you specified is not valid!');
+//                }
+//            } while(!$userBirthdayIsValid);
+//
+//            $newUser = new User();
+//            $newUser->setEmail($userEmail);
+//            $newUser->setBirthday($birthday);
+//            // TODO continuer
 
-            if(!$helper->ask($input, $output, $createUserQuestion)) {
-                return;
-            }
-
-            // Récupération de l'adresse email
-            $passwordQuestion = new Question('Create a password for this new admin user (be sur to not misstype): ');
-            do {
-                $userPassword = $helper->ask($input, $output, $passwordQuestion);
-                $userPasswordIsValid = true;
-                if(is_null($userPassword)) {
-                    $userPasswordIsValid = false;
-                    $io->writeln('You must specify a password!');
-                }
-            } while(!$userPasswordIsValid);
-
-            // Récupération de la date de naissance
-            $birthdayQuestion = new Question('And now, tell me what is the birthday of this admin (format: YYYY-MM-DD hh:ii:ss): ');
-            do {
-                $userBirthday = $helper->ask($input, $output, $birthdayQuestion);
-                $userBirthdayIsValid = true;
-                if(is_null($userBirthday)) {
-                    $userBirthdayIsValid = false;
-                    $io->writeln('You must specify a birthday!');
-                }
-                $birthday = \DateTime::createFromFormat('Y-m-d H:i:s', $userBirthday);
-                if(!($birthday instanceof \DateTime)) {
-                    $userBirthdayIsValid = false;
-                    $io->writeln('The format you specified is not valid!');
-                }
-            } while(!$userBirthdayIsValid);
-
-            $newUser = new User();
-            $newUser->setEmail($userEmail);
-            $newUser->setBirthday($birthday);
-            // TODO continuer
+            $io->error('The user specified does not exist.');
 
         // Si l'utilisateur existe, on lui ajoute simplement le rôle
         } else {

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin panel - Categories{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Users</h1>
+                <ul class="categories-list">
+                    {% for user in users %}
+                        <li><a href="{{ path('admin_users_id', {id: user.id}) }}">{{ user.email }}</a> - {{ user.videos|length }} videos</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

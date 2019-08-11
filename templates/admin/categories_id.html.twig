@@ -6,8 +6,22 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <h1>{{ category.name }}</h1>
+                <a href="{{ path("admin_categories") }}">Back to categories</a>
+                <h1>Category: {{ category.name }}</h1>
+                {% if category.description is null %}
+                    <p><i>No description</i></p>
+                {% else %}
+                    <p>Description: <i>{{ category.description }}</i></p>
+                {% endif %}
 
+                <p>Videos:</p>
+                <ul>
+                    {% for video in category.videos %}
+                        <li><a href="{{ path("video_id", {id:video.id}) }}">{{ video.title }}</a> - {{ video.user.email }}</li>
+                    {% else %}
+                        <p>No videos</p>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     </div>

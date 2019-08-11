@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin panel - {{ user.email }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <a href="{{ path("admin_users") }}">Back to users</a>
+                <h1>User: {{ user.email }}</h1>
+
+                <p>Register date: {{ user.registeredAt|date("Y-m-d H:i:s") }}</p>
+
+                <p>Videos:</p>
+                <ul>
+                    {% for video in user.videos %}
+                        <li><a href="{{ path("video_id", {id:video.id}) }}">{{ video.title }}</a> -
+                            {% if video.category is null %}
+                                <em>No category</em>
+                            {% else %}
+                                <a href="{{ path("admin_categories_id", {id:video.category.id}) }}">{{ video.category.name }}</a>
+                            {% endif %}
+                        </li>
+                    {% else %}
+                        <p>No videos</p>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock %}

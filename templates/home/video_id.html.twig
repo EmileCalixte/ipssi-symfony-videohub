@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Videohub - {{ video.title }}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Video: {{ video.title }}</h1>
+                {% if video.description is null %}
+                    <p><i>No description</i></p>
+                {% else %}
+                    <p>Description: <i>{{ video.description }}</i></p>
+                {% endif %}
+
+                {% if video.category is null %}
+                    <p><i>No category</i></p>
+                {% else %}
+                    <p>Category: <i>{{ video.category.name }}</i></p>
+                {% endif %}
+
+                <p>User: <a href="{{ path("user_id", {id:video.user.id}) }}">{{ video.user.email }}</a></p>
+
+                <a href="{{ video.url }}" target="_blank">View video</a>
+            </div>
+        </div>
+    </div>
+{% endblock %}

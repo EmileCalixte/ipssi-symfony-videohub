@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VideoHub - My videos{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div id="new-video-form" class="row" style="display: none;">
+            <div class="col-xl-4 col-lg-4 col-md-6 col-sm-8">
+                <a href="#" id="hide-new-video-form-link">Hide</a>
+                {{ form_start(form) }}
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <button id="display-new-video-form-button" class="btn btn-primary btn-success">New video</button>
+        <div class="row">
+            <div class="col-12">
+                <h1>My videos</h1>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        const displayFormButton = document.getElementById('display-new-video-form-button');
+        const form = document.getElementById('new-video-form');
+        const hideFormLink = document.getElementById('hide-new-video-form-link');
+
+        displayFormButton.addEventListener('click', function() {
+            form.style.display = 'block';
+            displayFormButton.style.display = 'none';
+        });
+
+        hideFormLink.addEventListener('click', function() {
+            form.style.display = 'none';
+            displayFormButton.style.display = 'inline-block';
+        })
+
+    </script>
+{% endblock %}
